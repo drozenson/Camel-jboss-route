@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+      <property name="brokerURL" value="tcp://localhost:61616/"/>
+       <property name="userName" value="admin"/>
+       <property name="password" value="admin"/>
+  </bean>
+  
+  <bean id="myRouting" class="com.smartflow.smartflow.mail.DynamicRouting"></bean>
+  
+  <camelContext id="context-3a048aac-a41c-4bc8-87a3-9cea4d98f3c9" xmlns="http://camel.apache.org/schema/blueprint">
+  <endpoint uri="dozer:xml2json?sourceModel=generated.MailPiece&amp;targetModel=epost.Epost&amp;marshalId=transform-json&amp;unmarshalId=generated&amp;mappingFile=transformation.xml" id="xml2json"/>
+  <endpoint uri="dozer:json2?sourceModel=epost.Epost&amp;targetModel=epost.Epost&amp;marshalId=transform-json&amp;unmarshalId=epostEpost&amp;mappingFile=transformation2.xml" id="json2"/>
+  <dataFormats>
+    <jaxb contextPath="generated" id="generated"/>
+    <json library="Jackson" id="transform-json"/>
+    <json library="Jackson" unmarshalTypeName="epost.Epost" id="epostEpost"/>
+  </dataFormats>
+  <route id="timerToLog">
+    <from uri="file:C:\smartflow\mailer1\incoming?allowNullBody=true&amp;delete=true"/>
+    <split parallelProcessing="false" id="_split1">
+      <xpath>//Root/MailPiece</xpath>
+      <to ref="xml2json"/>
+      <dynamicRouter>
+        <method ref="myRouting" method="Slip"></method>
+      </dynamicRouter>
+      <convertBodyTo/>
+      <to uri="activemq:queue:Test1"/>
+    </split>
+  </route>
+</camelContext>
+
+</blueprint>

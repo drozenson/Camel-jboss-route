@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1470322973150
+Build-Jdk: 1.8.0_91
+Built-By: dan.rozenson
+Bundle-ManifestVersion: 2
+Bundle-Name: Camel Blueprint Route
+Bundle-SymbolicName: smartflow-mail
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.smartflow.smartflow.mail;uses:="org.json.simple,org.
+ apache.camel,com.mysql.jdbc.jdbc2.optional,org.json.simple.parser,com.m
+ ysql.jdbc,javax.sql";version="1.0.0.SNAPSHOT",epost;uses:="com.fasterxm
+ l.jackson.annotation";version="1.0.0.SNAPSHOT",generated;uses:="javax.x
+ ml.bind.annotation,javax.xml.datatype";version="1.0.0.SNAPSHOT",org.jbo
+ ss.tools.fuse.transformation.editor.function;version="1.0.0.SNAPSHOT"
+Import-Package: com.fasterxml.jackson.annotation;version="[2.4,3)",com.m
+ ysql.jdbc,com.mysql.jdbc.jdbc2.optional,javax.sql,javax.xml.bind.annota
+ tion,javax.xml.datatype,org.apache.activemq.camel.component;version="[5
+ .11,6)",org.apache.camel;version="[2.15,3)",org.json.simple,org.json.si
+ mple.parser,org.osgi.service.blueprint;version="[1.0.0,2.0.0)"
+Originally-Created-By: Apache Maven Bundle Plugin
+Tool: Bnd-1.50.0

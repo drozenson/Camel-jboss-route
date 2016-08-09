@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <configuration>
+        <wildcard>false</wildcard>
+    </configuration>
+    <mapping>
+        <class-a>epost.Epost</class-a>
+        <class-b>epost.Epost</class-b>
+        <field>
+            <a>PublicationID</a>
+            <b>PublicationID</b>
+        </field>
+        <field>
+            <a>Source</a>
+            <b>Source</b>
+        </field>
+        <field>
+            <a>TargetID</a>
+            <b>TargetID</b>
+        </field>
+    </mapping>
+</mappings>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="SenderName"/>
+        <xs:element name="MailPiece" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TargetID">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:integer">
+                      <xs:attribute type="xs:string" name="Type" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:string" name="Description"/>
+              <xs:element name="PublicationName">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:byte" name="PublicationID" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Payment">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="AccountNumber">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                          <xs:enumeration value="00045916400060376209"/>
+                          <xs:enumeration value="00050916400060376209"/>
+                          <xs:enumeration value="00000000000060376209"/>
+                          <xs:enumeration value="00000000000000000000"/>
+                          <xs:enumeration value="00005646700005786904"/>
+                          <xs:enumeration value="11111111111111111111"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element type="xs:float" name="TotalDue"/>
+                    <xs:element type="xs:float" name="LatePaymentAmount"/>
+                    <xs:element type="xs:date" name="DueDate"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Source">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="Type" use="optional"/>
+                      <xs:attribute type="xs:byte" name="Inline" use="optional"/>
+                      <xs:attribute type="xs:string" name="Ref" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="Type" use="optional"/>
+            <xs:attribute type="xs:byte" name="Shared" use="optional"/>
+            <xs:attribute type="xs:date" name="AccessibleDate" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:byte" name="NumberOfMailPieces"/>
+      </xs:sequence>
+      <xs:attribute type="xs:short" name="SequenceNumber"/>
+      <xs:attribute type="xs:date" name="CreateDate"/>
+      <xs:attribute type="xs:string" name="TypeOfMailing"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
